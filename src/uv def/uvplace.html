@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UV-Place</title>
+  
+  <style>
+    .container {
+      display: flex;
+      gap: 10px; 
+    }
+    .subcontainer {
+      display: flow-root;
+      gap: 10px; 
+    }
+    .custbutton{
+      width: 400px;
+      height: 100px;
+      font-size: 72px;
+      text-align: center;
+      margin-left: 50px; 
+      margin-right: none;
+      margin-top: 10px;
+      border:5px solid #000
+      
+    }
+    
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: "C:\Users\dleni\OneDrive\Documentos\uvPlace\uv def\temporary background.webp" no-repeat center center fixed;
+      background-size: repeat;
+    }
+    
+    #title{
+      display: list-item;
+      width: 400px;
+      height: 200px;
+      text-align: center;
+      margin-left: 50px; 
+      margin-right: none;
+      margin-top: 100px;
+      border:5px solid #000
+      
+    }
+    #canvas {
+      display: grid;
+      grid-template-columns: repeat(100, 10px); /* 100*100 grid */
+      grid-template-rows: repeat(100, 10px);
+      margin-left: 100px;
+      margin-top: 100px;
+      width: 1000px;
+      border: 5px solid #000;
+      ;
+    }
+
+    .pixel {
+      width: 10px;
+      height: 10px;
+      border: 0px solid #fff;
+      box-sizing: border-box;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    #color-picker {
+      margin-top: 250px;
+    }
+
+  </style>
+</head>
+<body background="C:\Users\dleni\OneDrive\Documentos\uvPlace\uv def\background\lll.webp">
+  <div class="container">
+    <div class="subcontainer">
+      <div id="title">
+      
+        <img src="C:\Users\dleni\OneDrive\Documentos\uvPlace\uv def\uvplacemanual.gif" alt="UV-place" width=400 height=200>
+      </div>
+    
+      <div class="custbutton">  
+        <img src="C:\Users\dleni\OneDrive\Documentos\uvPlace\uv def\buttonstyles\erroreport.png">
+      </div>
+      <div class="custbutton">  
+        <img src="C:\Users\dleni\OneDrive\Documentos\uvPlace\uv def\buttonstyles\privroom.png">
+      </div>
+      <div class="custbutton">  
+        <img src="C:\Users\dleni\OneDrive\Documentos\uvPlace\uv def\buttonstyles\templates.png">
+      </div>
+      <div class="custbutton">  
+        <button>TEXT HERE</button>
+      </div>
+      <div class="custbutton">  
+        <button>TEXT HERE</button>
+      </div>
+        
+
+    </div>
+   
+    
+    <div class="container" >
+
+      <div id="canvas"></div>
+      
+      <input type="color" id="color-picker" value="#ff0000"/>
+    
+    </div>
+
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const colorPicker = document.getElementById('color-picker');
+
+    // Crear 50x50 = 2500 píxeles
+    for (let i = 0; i < 10000; i++) {
+      const pixel = document.createElement('div');
+      pixel.classList.add('pixel');
+      pixel.addEventListener('click', () => {
+        pixel.style.backgroundColor = colorPicker.value;
+      });
+      canvas.appendChild(pixel);
+    }
+  </script>
+</body>
+</html>
