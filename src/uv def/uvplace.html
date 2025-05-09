@@ -10,6 +10,10 @@
       display: flex;
       gap: 10px; 
     }
+    .colorpalette {
+      display: flow-root;
+      gap: 50px; 
+    }
     .subcontainer {
       display: flow-root;
       gap: 10px; 
@@ -19,7 +23,7 @@
       height: 100px;
       font-size: 72px;
       text-align: center;
-      margin-left: 50px; 
+      margin-left: 20px; 
       margin-right: none;
       margin-top: 10px;
       border:5px solid #000
@@ -29,6 +33,7 @@
     body {
       font-family: sans-serif;
       text-align: center;
+
     }
     
     #title{
@@ -36,7 +41,7 @@
       width: 400px;
       height: 200px;
       text-align: center;
-      margin-left: 50px; 
+      margin-left: 20px; 
       margin-right: none;
       margin-top: 100px;
       border:5px solid #000
@@ -44,11 +49,11 @@
     }
     #canvas {
       display: grid;
-      grid-template-columns: repeat(100, 10px); /* 100*100 grid */
-      grid-template-rows: repeat(100, 10px);
-      margin-left: 100px;
+      grid-template-columns: repeat(100, 9px); /* 100*100 grid */
+      grid-template-rows: repeat(100, 9px);
+      margin-left: 50px;
       margin-top: 100px;
-      width: 1000px;
+      width: 900px;
       border: 5px solid #000;
       ;
     }
@@ -68,7 +73,9 @@
 
   </style>
 </head>
-<body background="background\lll.webp">
+<body background="background\BACKgrnd.png"></body> 
+<!-- <body background="background\BACKgrnd_pix.webp"></body> -->
+<!-- <body background="background\lll.webp"> -->
   <div class="container">
     <div class="subcontainer">
       <div id="title">
@@ -99,8 +106,14 @@
     <div class="container" >
 
       <div id="canvas"></div>
-      
-      <input type="color" id="color-picker" value="#ff0000"/>
+      <div class="colorpalette">
+        <input type="color" id="color-picker" value="#ff0000" size="300"/>
+        <input type="color" id="palette" value="#ff0000"/>
+        <input type="color" id="palette2" value="#00ff00"/>
+        <input type="color" id="palette3" value="#0000ff"/>
+        <input type="color" id="palette4" value="#ffffff"/>
+        <input type="color" id="palette5" value="#000000"/>
+      </div>
     
     </div>
 
@@ -108,7 +121,30 @@
 
   <script>
     const canvas = document.getElementById('canvas');
+  
     const colorPicker = document.getElementById('color-picker');
+
+    const palette = document.getElementById('palette');
+    palette.addEventListener('click', () => {
+        colorPicker.value = palette.value;
+      });
+    const palette2 = document.getElementById('palette2');
+    palette2.addEventListener('click', () => {
+        colorPicker.value = palette2.value;
+      });
+    const palette3 = document.getElementById('palette3');
+    palette3.addEventListener('click', () => {
+        colorPicker.value = palette3.value;
+      });
+    const palette4 = document.getElementById('palette4');
+    palette4.addEventListener('click', () => {
+        colorPicker.value = palette4.value;
+      });
+    const palette5 = document.getElementById('palette5');
+    palette5.addEventListener('click', () => {
+        colorPicker.value = palette5.value;
+      });
+
 
     // Crear 50x50 = 2500 píxeles
     for (let i = 0; i < 10000; i++) {
