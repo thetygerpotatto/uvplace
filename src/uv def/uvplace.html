@@ -114,7 +114,7 @@
       </div>
       
       <div class="backgroundcolorpick" style="background: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3l2ZmFodGg5aHRrdmozNTJsaWpyejJ1cXE2bDY1a3EwandlMWt0cyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3otO6NFBIAFg2vPZuM/giphy.gif);">
-        <input type="color" id="backgroundpicker" value="#ff0000"/>
+        <input type="color" id="backgroundpicker" value="#ffffff"/>
       </div>
 
     </div>
@@ -124,6 +124,7 @@
 
       <div id="canvas"></div>
       <div class="colorpalette">
+        <div id=timer style="color: rgb(55, 255, 0); font-size: 20px; font-weight: bold; background-color: #000000; border:10px groove #000;">00:00</divid></div>
         <div id="mainpicker">
           <input type="color" id="color-picker" value="#ffffff" width="300"/>
         </div>
@@ -145,6 +146,37 @@
   </div>
 
   <script>
+    var modify = true;
+    var timeleft = 0;
+
+    const timer = document.getElementById('timer');
+  
+    var text = "00:";
+    function updatetimer(m){
+      
+      timer.textContent = "00:" + m;
+
+    };
+
+    function countDown(m){
+      
+      updatetimer(m);
+
+      m--;
+
+      if(m >= 0){
+
+      setTimeout(() => countDown(m), 1000);
+
+      } else {
+
+        timer.textContent = "00:00"
+        modify = true;
+      
+      };
+        
+    };
+
     const backgroundpicker = document.getElementById('backgroundpicker');
     backgroundpicker.addEventListener('click', () => {
         document.body.style.backgroundColor = backgroundpicker.value;
@@ -196,17 +228,32 @@
         colorPicker.value = palette10.value;
       });
 
-
-
+    function modifytrue(){
+      modify = true;
+    };
+    
     // Crear 50x50 = 2500 píxeles
+
     for (let i = 0; i < 10000; i++) {
       const pixel = document.createElement('div');
       pixel.classList.add('pixel');
       pixel.addEventListener('click', () => {
-        pixel.style.backgroundColor = colorPicker.value;
+        
+        if (modify== true) {
+
+          pixel.style.backgroundColor = colorPicker.value;
+          modify = false;
+          
+          countDown(30);
+        
+        } else {
+
+          alert("Ya has pintado mucho, descansa unos segundos");
+        
+        };
       });
       canvas.appendChild(pixel);
-    }
+    };
   </script>
 </body>
 </html>
