@@ -10,23 +10,35 @@
       display: flex;
       gap: 10px; 
     }
+    .backgroundcolorpick {
+      width: 50%;
+      height: 5%;
+      font-size: 0px;
+      text-align: center;
+      padding-top: 10%;
+      margin-left: 25%; 
+      margin-right: none;
+      margin-top: 5%;
+      border:5px groove #000
+    }
     .colorpalette {
       display: flow-root;
       gap: 50px; 
     }
     .subcontainer {
+      width: 20%;
       display: flow-root;
-      gap: 10px; 
+      gap: 5%; 
     }
     .custbutton{
-      width: 400px;
-      height: 100px;
-      font-size: 72px;
+      width: 100%;
+      height: 5%;
+      font-size: 0px;
       text-align: center;
-      margin-left: 20px; 
+      margin-left: 10%; 
       margin-right: none;
-      margin-top: 10px;
-      border:5px solid #000
+      margin-top: 5%;
+      border:5px groove #000
       
     }
     
@@ -38,23 +50,23 @@
     
     #title{
       display: list-item;
-      width: 400px;
-      height: 200px;
+      width: 100%;
+      height: 10%;
       text-align: center;
-      margin-left: 20px; 
+      margin-left: 10%; 
       margin-right: none;
       margin-top: 100px;
-      border:5px solid #000
+      border:5px groove #000
       
     }
     #canvas {
       display: grid;
-      grid-template-columns: repeat(100, 9px); /* 100*100 grid */
-      grid-template-rows: repeat(100, 9px);
-      margin-left: 50px;
-      margin-top: 100px;
-      width: 900px;
-      border: 5px solid #000;
+      grid-template-columns: repeat(100, 1%); /* 100*100 grid */
+      grid-template-rows: repeat(100, 1%);
+      margin-left: 5%;
+      margin-top: 5%;
+      width: 80%;
+      border: 10px groove #000;
       ;
     }
 
@@ -73,32 +85,37 @@
 
   </style>
 </head>
-<body background="background\BACKgrnd.png"></body> 
+<body background="background\blank.png" style="background-color: black;"></body>
+<!-- <body background="background\BACKgrnd.png"></body> -->
 <!-- <body background="background\BACKgrnd_pix.webp"></body> -->
 <!-- <body background="background\lll.webp"> -->
   <div class="container">
     <div class="subcontainer">
       <div id="title">
       
-        <img src="uvplacemanual.gif" alt="UV-place" width=400 height=200>
+        <img src="uvplacemanual.gif" alt="UV-place" width=100% height=100%>
       </div>
     
       <div class="custbutton">  
-        <img src="buttonstyles\erroreport.png">
+        <img src="buttonstyles\erroreport.png" width=100% height=100%>
       </div>
       <div class="custbutton">  
-        <img src="buttonstyles\privroom.png">
+        <img src="buttonstyles\privroom.png" width=100% height=100%>
       </div>
       <div class="custbutton">  
-        <img src="buttonstyles\templates.png">
+        <img src="buttonstyles\templates.png" width=100% height=100%>
       </div>
-      <div class="custbutton">  
-        <button>TEXT HERE</button>
-      </div>
-      <div class="custbutton">  
-        <button>TEXT HERE</button>
-      </div>
+      <div class="custbutton" style="background-color: white;">
         
+        <button> here  </button>
+      </div>
+      <div class="custbutton" style="background-color: white;" >  
+        <button>TEXT HERE</button>
+      </div>
+      
+      <div class="backgroundcolorpick" style="background: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3l2ZmFodGg5aHRrdmozNTJsaWpyejJ1cXE2bDY1a3EwandlMWt0cyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3otO6NFBIAFg2vPZuM/giphy.gif);">
+        <input type="color" id="backgroundpicker" value="#ff0000"/>
+      </div>
 
     </div>
    
@@ -107,12 +124,20 @@
 
       <div id="canvas"></div>
       <div class="colorpalette">
-        <input type="color" id="color-picker" value="#ff0000" size="300"/>
+        <div id="mainpicker">
+          <input type="color" id="color-picker" value="#ffffff" width="300"/>
+        </div>
+
         <input type="color" id="palette" value="#ff0000"/>
         <input type="color" id="palette2" value="#00ff00"/>
         <input type="color" id="palette3" value="#0000ff"/>
-        <input type="color" id="palette4" value="#ffffff"/>
-        <input type="color" id="palette5" value="#000000"/>
+        <input type="color" id="palette4" value="#777777"/>
+        <input type="color" id="palette5" value="#ff00ff"/>
+        <input type="color" id="palette6" value="#ffff00"/>
+        <input type="color" id="palette7" value="#00ffff"/>
+        <input type="color" id="palette8" value="#ff0099"/>
+        <input type="color" id="palette9" value="#9933ff"/>
+        <input type="color" id="palette10" value="#000000"/>
       </div>
     
     </div>
@@ -120,6 +145,11 @@
   </div>
 
   <script>
+    const backgroundpicker = document.getElementById('backgroundpicker');
+    backgroundpicker.addEventListener('click', () => {
+        document.body.style.backgroundColor = backgroundpicker.value;
+      });
+
     const canvas = document.getElementById('canvas');
   
     const colorPicker = document.getElementById('color-picker');
@@ -144,6 +174,28 @@
     palette5.addEventListener('click', () => {
         colorPicker.value = palette5.value;
       });
+    
+    const palette6 = document.getElementById('palette6');
+    palette6.addEventListener('click', () => {
+        colorPicker.value = palette6.value;
+      });
+    const palette7 = document.getElementById('palette7');
+    palette7.addEventListener('click', () => {
+        colorPicker.value = palette7.value;
+      });
+    const palette8 = document.getElementById('palette8');
+    palette8.addEventListener('click', () => {
+        colorPicker.value = palette8.value;
+      });
+    const palette9 = document.getElementById('palette9');
+    palette9.addEventListener('click', () => {
+        colorPicker.value = palette9.value;
+      });
+    const palette10 = document.getElementById('palette10');
+    palette10.addEventListener('click', () => {
+        colorPicker.value = palette10.value;
+      });
+
 
 
     // Crear 50x50 = 2500 píxeles
