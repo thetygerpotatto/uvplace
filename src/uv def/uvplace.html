@@ -125,6 +125,7 @@
       <div id="canvas"></div>
       <div class="colorpalette">
         <div id=timer style="color: rgb(55, 255, 0); font-size: 20px; font-weight: bold; background-color: #000000; border:10px groove #000;">00:00</divid></div>
+        <div id="warning" style="color: rgb(251, 0, 255); font-size: 20px; font-weight: bold; background-color: #000000; border:10px groove #000;">Pinte ☺</div>
         <div id="mainpicker">
           <input type="color" id="color-picker" value="#ffffff" width="300"/>
         </div>
@@ -172,6 +173,7 @@
 
         timer.textContent = "00:00"
         modify = true;
+        warning.textContent = 'Pinte ☺';
       
       };
         
@@ -228,32 +230,44 @@
         colorPicker.value = palette10.value;
       });
 
+    const warning = document.getElementById('warning');
+
     function modifytrue(){
       modify = true;
     };
     
     // Crear 50x50 = 2500 píxeles
 
-    for (let i = 0; i < 10000; i++) {
-      const pixel = document.createElement('div');
-      pixel.classList.add('pixel');
-      pixel.addEventListener('click', () => {
-        
-        if (modify== true) {
-
-          pixel.style.backgroundColor = colorPicker.value;
-          modify = false;
+    for (let x = 0; x < 100; x++) {
+      for (let y = 0; y < 100; y++) {
+        /*console.log(x+','+y)*/
+        const pixel = document.createElement('div');
+        pixel.classList.add('pixel');
+        pixel.id = (x + ',' + y);
+      
+        pixel.addEventListener('click', () => {
           
-          countDown(30);
-        
-        } else {
+          if (modify== true) {
 
-          alert("Ya has pintado mucho, descansa unos segundos");
+            pixel.style.backgroundColor = colorPicker.value;
         
-        };
-      });
-      canvas.appendChild(pixel);
+            modify = false;
+            
+            countDown(5);
+          
+          } else {
+
+            warning.textContent = 'Perese';
+          
+          };
+        });
+        canvas.appendChild(pixel);
+      };
     };
+ //USAR LAS DOS PROXIMAS LINEAS COMO EJEMPLO, ASI SE ACCEDE A UN PIXEL POR ID, LUEGO SE MODIFICA EL COLOR
+    //const searchfor = document.getElementById('20,20')
+    //searchfor.style.backgroundColor = "#ff00ff";
+ //MODIFICAR PARA TOMAR VALOR DE PIXEL ALMACENADO EN DATABASE
   </script>
 </body>
 </html>
