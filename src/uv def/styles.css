@@ -88,10 +88,19 @@ body {
 }
 
 #color-picker {
-  margin-top: 250px;
+  margin-top: 150px;
   cursor: pointer;
 }
 
+#timer1 {
+  color: rgb(255, 221, 0);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #000;
+  border: 10px groove #000;
+  width: 140px;
+  margin-top: 15%;
+}
 #timer {
   color: rgb(55, 255, 0);
   font-size: 20px;
@@ -100,6 +109,15 @@ body {
   border: 10px groove #000;
   width: 90px;
 }
+.timer {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #000;
+  border: 10px groove #000;
+  width: 140px;
+  margin-top: 50px;
+}
 
 #warning {
   color: rgb(251, 0, 255);
@@ -107,7 +125,7 @@ body {
   font-weight: bold;
   background-color: #000;
   border: 10px groove #000;
-  width: 130px;
+  width: 140px;
 }
 
 .gif-icon {
@@ -120,5 +138,5 @@ body {
 .timercontainer {
   display: flex;
   flex-direction: row;
-  margin-top: 15%;
+  margin-top: 0%;
 }

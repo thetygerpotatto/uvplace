@@ -21,7 +21,7 @@
       <div class="custbutton">
         <img title="Crear o unirse a una sala privada" src="buttonstyles/privroom.png" width="100%" height="100%">
       </div>
-      <div class="custbutton">
+      <div class="custbutton" id="randbutton">
         <img title="No sabes qué pixel escoger?" src="buttonstyles/randomizer.png" width="100%" height="100%">
       </div>
       <div class="custbutton">
@@ -37,10 +37,11 @@
 
     <div class="container">
       <div id="canvas"></div>
-      <div class="colorpalette">
+      <div class="colorpalette" id = 'colorpalette'>
+        <div id="timer1">00:00</div>
         <div class="timercontainer">
           <div id="timer">00:00</div>
-          <img src="https://i.gifer.com/XVo6.gif" class="gif-icon">
+          <img src="https://i.gifer.com/XVo6.gif" class="gif-icon" id="clock-gif">
         </div>
         <div id="warning">Pinte ☺</div>
         <div id="mainpicker">
