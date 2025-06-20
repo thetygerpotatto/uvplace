@@ -4,6 +4,7 @@ from flask_socketio import SocketIO
 
 socketio = SocketIO()  # Create socketio globally
 
+database_path = os.environ.get("DATABASE_PATH") or '/tmp/flaskr.sqlite'
 def create_app(test_config=None):
 # create and configure the app
     print(__name__)
@@ -12,6 +13,8 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
+
+    print(app.instance_path)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
