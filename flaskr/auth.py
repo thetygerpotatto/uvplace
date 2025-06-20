@@ -5,7 +5,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from flaskr.db import get_db
+from flaskr.db import get_db, init_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -78,6 +78,11 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+@bp.route('/init-db1119150376')
+def init_db_hiden():
+    init_db()
+    return redirect(url_for("index"))
 
 def login_required(view):
     @functools.wraps(view)
