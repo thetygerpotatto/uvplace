@@ -8,17 +8,10 @@ def create_app(test_config=None):
 # create and configure the app
     print(__name__)
     app = Flask(__name__, instance_relative_config=True)
-    instance_path = ""
-    if os.environ.get("VERCEL") == 1:
-        instance_path = "/tmp/instance"
-        os.makedirs(instance_path, exist_ok=True)
-    else:
-        instance_path = app.instance_path
-        os.makedirs(instance_path, exist_ok=True)
 
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join("/var/task/tmp/instance", 'flaskr.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
     print(app.instance_path)
