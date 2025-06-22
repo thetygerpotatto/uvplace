@@ -8,6 +8,7 @@ __pycache__/
 .coverage
 htmlcov/
 
+instance/
 dist/
 build/
 *.egg-info/
