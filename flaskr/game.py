@@ -39,6 +39,6 @@ def update_map():
         db.execute("UPDATE map SET color = ? WHERE cordx = ? AND cordy = ?", 
                    (change["color"], change["x"], change["y"]))
         db.commit()
-        socketio.emit("map-update", {"msg": "update-map"})
+        socketio.emit("map-update", json.dumps(change))
         print(socketio)
     return "200"

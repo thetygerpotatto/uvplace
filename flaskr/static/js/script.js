@@ -14,24 +14,19 @@ const ctx = canvas.getContext("2d");
 const timer = document.getElementById('timer');
 const timer1 = document.getElementById('timer1');
 const clockgif = document.getElementById('clock-gif');
-const randomizer = document.getElementById('randbutton');
+const randomizer = document.getElementById('random');
+const error = document.getElementById('errorReport')
 
-function randmodify(){
-  
-  var x = Math.floor(Math.random() * (100 - 0 + 1));
-  var y = Math.floor(Math.random() * (100 - 0 + 1));
-  var r = Math.floor(Math.random() * (10 - 0 + 1)) ;
-  var g = Math.floor(Math.random() * (10 - 0 + 1)) ;
-  var b = Math.floor(Math.random() * (10 - 0 + 1)) ;
-  const pix = document.getElementById(x+','+y);
-  pix.style.backgroundColor = "000000";
-  alert(`${x},${y}`)
-  
+error.addEventListener("click", report)
+function report() {
+    console.log("error")
 }
 
-randomizer.addEventListener('click', () => {
-  randmodify();
-});
+function randmodify(){
+    console.log("rand")
+}
+console.log(randomizer)
+randomizer.addEventListener('click', randmodify());
 
 
 function gettime(){
@@ -150,12 +145,15 @@ async function renderCanvas(ctx) {
 
 canvas.addEventListener('click', changeCellColor);
 
-socket.on('map-update', () => {
-    getMap()
-    console.log("Map updated")
-})
 //uncomment the following for debbug
 function changeCellColor(e) {
+    if (modify === true) {
+        modify = false
+    } 
+    else if (modify === false) {
+        return;
+    }
+
     const rect = canvas.getBoundingClientRect();
 
     const x = e.clientX - (10 + rect.left);
@@ -165,6 +163,7 @@ function changeCellColor(e) {
     map["map"][xIndex][yIndex] = colorPicker.value
     updateMap(xIndex, yIndex, colorPicker.value)
     renderCanvas(ctx)
+    countDown(2)
 }
 
 async function updateMap(x, y, color) {
@@ -176,6 +175,12 @@ async function updateMap(x, y, color) {
             body: JSON.stringify({"x": x, "y": y, "color": color})
             })
 }
+
+socket.on('map-update', (data) => {
+    const update = JSON.parse(data)
+    map["map"][update["x"]][update["y"]] = update["color"]
+    renderCanvas(ctx)
+})
 
 async function getMap() {
     let response = await fetch("/map");
