@@ -25,7 +25,6 @@ function report() {
 function randmodify(){
     console.log("rand")
 }
-console.log(randomizer)
 randomizer.addEventListener('click', randmodify());
 
 
