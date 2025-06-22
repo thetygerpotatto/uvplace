@@ -1,15 +1,125 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <style>
+    body {
+      background-color: black;
+      background-image: "{{ url_for('static', filename='images/background/blank.png')}}";
 
-{% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
-{% endblock %}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40%;
+      margin: 10%;
+      font-family: Arial, sans-serif;
+    }
 
-{% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
-  </form>
-{% endblock %}
+    .register-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 90%;
+      text-align: center;
+    }
+
+    .register-container img {
+      width: 30%;
+      margin-bottom: 20px;
+      border-radius: 20%;
+    }
+
+    .register-container input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .register-container button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .register-container a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      background-color: black;
+    }
+
+    .register-container a:hover {
+      color: #e622e3;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container" style="background-color: darkgray; border: groove black">
+    <img src="https://i.gifer.com/VpUu.gif" alt="User Icon">
+    <form method="post">
+      <input type="text" name = "username" id = "username" placeholder="Nombre de usuaro" required><br>
+      <input type="password" name = "password" id="password" placeholder="Contraseña" required><br>
+      <input type="password" id="confirmPassword" placeholder="Confirma tu contraseña" required><br>
+      <div class="error-message" id="error">No coinciden las contraseñas</div>
+      <input value="Submit" type="submit" id="submitBtn" disabled><br>
+    </form>
+    <a href="{{url_for('auth.login')}}">Ya tienes una cuenta?</a>
+  </div>
+
+  <script>
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const submitBtn = document.getElementById('submitBtn');
+    const error = document.getElementById('error');
+
+    function checkPasswords() {
+      if (password.value && confirmPassword.value && password.value === confirmPassword.value) {
+        submitBtn.disabled = false;
+        error.style.display = 'none';
+      } else {
+        submitBtn.disabled = true;
+        if (confirmPassword.value) {
+          error.style.display = 'block';
+        } else {
+          error.style.display = 'none';
+        }
+      }
+    }
+
+    password.addEventListener('input', checkPasswords);
+    confirmPassword.addEventListener('input', checkPasswords);
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      if (password.value !== confirmPassword.value) {
+        e.preventDefault();
+        error.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

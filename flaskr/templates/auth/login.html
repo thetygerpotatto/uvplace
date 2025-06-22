@@ -1,15 +1,69 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <style>
+    body {
+      background-color: black;
+      background-image: "{{ url_for('static', filename='images/background/blank.png')}}";
 
-{% block header %}
-  <h1>{% block title %}Log In{% endblock %}</h1>
-{% endblock %}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40%;
+      margin: 10%;
+      font-family: Arial, sans-serif;
+    }
 
-{% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
-  </form>
-{% endblock %}
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 5px black;
+      width: 90%;
+      text-align: center;
+    }
+
+    .login-container-img {
+      width: 30%;
+      margin-bottom: 10%;
+      border-radius: 50%;
+      background-color: rgba(0, 81, 255, 0.741);
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .login-container a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .login-container a:hover {
+      color: #e622e3;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" style="background-color: darkgray;">
+    <img class="login-container-img" src="https://i.gifer.com/3IsP.gif" alt="User Icon">
+    <form method="post">
+      <input type="text" name = "username" id = "username" placeholder="ID de Usuario" required><br>
+      <input type="password" name = "password" id = "password" placeholder="Contraseña" required><br>
+      <input type="submit" value="Login">
+    </form>
+    <a href="{{url_for('auth.register')}}" style="background-color: black; height: 30px;">No estas registrado?</a>
+  </div>
+</body>
+</html>

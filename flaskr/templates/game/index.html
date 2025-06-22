@@ -24,9 +24,9 @@
       <div class="custbutton" id="random">
         <img title="No sabes qué pixel escoger?" src="{{ url_for('static', filename='images/buttons/randomizer.png')}}" width="100%" height="100%">
       </div>
-      <div class="custbutton">
+      <a href="{{ url_for('auth.register')}}"><div class="custbutton">
         <img title="Inicia sesión" src="{{ url_for('static', filename='images/buttons/login.png')}}" width="100%" height="100%">
-      </div>
+          </div></a>
       <div class="backgroundcolorpick">
         <input type="color" id="backgroundpicker" value="#ffffff"/>
       </div>
