@@ -16,11 +16,20 @@ const timer1 = document.getElementById('timer1');
 const clockgif = document.getElementById('clock-gif');
 const randomizer = document.getElementById('random');
 const error = document.getElementById('errorReport')
+const download_canvas = document.getElementById("download")
 
 error.addEventListener("click", report)
 function report() {
     console.log("error")
 }
+
+download_canvas.addEventListener("click", () => {
+    const image = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = image;
+    link.download = 'canvas-image.png'; 
+    link.click(); 
+})
 
 function randmodify(){
     console.log("rand")
@@ -162,7 +171,7 @@ function changeCellColor(e) {
     map["map"][xIndex][yIndex] = colorPicker.value
     updateMap(xIndex, yIndex, colorPicker.value)
     renderCanvas(ctx)
-    countDown(2)
+    countDown(1)
 }
 
 async function updateMap(x, y, color) {
